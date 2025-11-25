@@ -64,7 +64,7 @@ table {
 	--accent: #cc8b86;
 	--text2: #f8f0fb;
 	--bg2: #436436;
-	--box-shadow: 2px 4px 6px var(var(--accent));
+	--box-shadow: 2px 4px 6px var(--accent);
 }
 
 /*===== Universal Styles =====*/
