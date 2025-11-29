@@ -73,8 +73,8 @@ body{
 	width: 100%;
 	margin: 0 auto;
 	background-color: var(--bg);
-	opacity: 1;
-	background-image:  radial-gradient(var(--text2) 1.5px, transparent 1.5px), radial-gradient(var(--text2) 1.5px, var(--bg) 1.5px);
+	opacity: 1; 
+	background-image:  radial-gradient(var(--text2) 1.5px, transparent 1.5px), radial-gradient(var(--text2) 1.5px, var(--bg) 1.5px); /*Background Pattern*/
 	background-size: 60px 60px;
 	background-position: 0 0,30px 30px;
 }
@@ -213,9 +213,9 @@ a:hover{
 	background-color: var(--bg);
 }
 .hidden{
-	display: none;
+	display: none; /*Hidding non-active products*/
 }
-#merch .product.active{
+#merch .product.active{ /*Displaying active products*/
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 2fr;
@@ -223,6 +223,9 @@ a:hover{
 }
 #merch img{
 	grid-row: 1/-1;
+	width: 600px;
+    padding: 1em;
+    border-radius: 35px;
 }
 
 #merch h3{
@@ -331,27 +334,27 @@ button{
 	padding: 10px;
 }
 #success{
-	text-align: center;
+	text-align: center; /*Success message and submitted info styles*/
 }
 .message{
-	display: none;
+	display: none; /*Hiding error messages*/
 }
 .errorInput{
-	border: 4px var(--accent) solid;
+	border: 4px var(--accent) solid; /*Input error styles*/
 }
 .error{
-	display: block;
+	display: block; /*Showing error messages*/
 }
 .hide{
-	display: none;
+	display: none; /*Hiding success message and submitted info*/
 }
 .show{
-	display: block;
+	display: block;/*Showing success message and submitted info*/
 }
 
 
 /*===== Mode Switch =====*/
-#mode-switch{
+#mode-switch{ /*Switch button styles*/
 	height: 50px;
 	width: 50px;
 	padding: 0; 
@@ -391,11 +394,11 @@ button{
 	padding: 10px;
 	transition: box-shadow 0.3s ease;
 }
-.bounce:hover{
+.bounce:hover{ /*bounce animation*/
 	animation: bounce 2s ease infinite;
 	filter:drop-shadow(var(--box-shadow));
 }
-@keyframes bounce{
+@keyframes bounce{ /*bounce animation*/
 	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
 	40% {transform: translateY(-30px);}
 	60% {transform: translateY(-15px);}
