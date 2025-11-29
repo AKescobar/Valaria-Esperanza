@@ -30,109 +30,134 @@ modeSwitch.addEventListener("click", () =>{
 })
 
 /* product display */
-//get buttons and product details
+// function to set up buttons
 function setupButtons(){
+// getting buttons
 document.querySelectorAll('button').forEach(button =>{
+    // event listener
     button.addEventListener("click", () =>{
+            // variables
             let productButtons = document.querySelectorAll('#productButtons button');
             let productDetails = document.querySelectorAll('.product');
             let buttonNum = button.dataset.target;
             let activeButton = document.querySelector(`.product[id=${buttonNum}]`);
 
+            // removing active from all buttons
             productButtons.forEach(button => {
                 button.classList.remove('active');
             })
+
+            // removing active from and adding hidden to each product
             productDetails.forEach(section => {
                 section.classList.remove('active');
                 section.classList.add('hidden');
             })
 
+            // adding active to active button and product
             activeButton.classList.add('active');
         })
     })
 }
-
+// calling function
 setupButtons();
 
 
 /* guessing game */
+// get submit button
 let btn = document.getElementById('guessGame');
 
+// event listener
 btn.addEventListener("click", (e) =>{
+    //variables
+    // generate a random number
     let randomNumber = Math.floor(Math.random() * 10) + 1;
     console.log(randomNumber);
+    // user guess
     let userNum = document.getElementById('numGuess');
+    // game output
     let gameOutput = document.getElementById('gameOutput');
     e.preventDefault();
     let userGuess = userNum.value;
 
     if(userGuess == randomNumber){
-        gameOutput.textContent = 'Congratulations! You Win!'
+        gameOutput.textContent = 'Congratulations! You Win!' // winning message
     }
     else if(userGuess == ""){
-        gameOutput.textContent = "Please enter a number between 1 and 10."
+        gameOutput.textContent = "Please enter a number between 1 and 10." // error message
     }
     else{
-        gameOutput.textContent = 'No Dice. Try Again.'
+        gameOutput.textContent = 'No Dice. Try Again.' // losing message
     }
 
 })
 
 
 /* form validation */
-
+// submit button
 let submitBtn = document.getElementById('mySubmit');
 
-
+// event listener
 submitBtn.addEventListener("click", (e) =>{
-    e.preventDefault();
+    // prevent default
+    e.preventDefault(); 
 
+    //variables
     let contactMe = document.getElementById('contactMe');
     let errorSpans = document.querySelectorAll(".message");
 
     let isValid = true;
 
+    //remove error from inputs
     contactMe.myName.classList.remove("errorInput");
     contactMe.myInbox.classList.remove("errorInput");
     contactMe.myPhone.classList.remove("errorInput");
     contactMe.myComments.classList.remove("errorInput");
 
+    // hide error messages
     errorSpans.forEach(function(span){
     span.classList.remove("error");
     })
 
+    // hide success message and submitted info 
     document.querySelector("#success").classList.remove("show");
     document.querySelector("#success").classList.add("hide");
 
+    // regex
     let nameRegex = /^[a-zA-Z]{1,30}$/;
     let telRegex = /^\+?[1-9][0-9]{7,14}$/;
     let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+    //conditions for each input
+     //name
      if(contactMe.myName.value === "" || !(nameRegex.test(contactMe.myName.value))){
         contactMe.myName.classList.add("errorInput");
         errorSpans[0].classList.add("error");
         isValid = false;
      }
 
+     //comment
      if(contactMe.myComments.value === ""){
         contactMe.myComments.classList.add("errorInput");
         errorSpans[4].classList.add("error");
         isValid = false;
      }
-
+     // preferred contact
      let prefContactIsValid = false;
 
+    // variables
     let email = document.getElementById("prefEmail");
     let phone = document.getElementById("prefPhone");
     let emailSpan = document.getElementById("prefEmailSpan");
     let phoneSpan = document.getElementById("prefPhoneSpan");
-
+    
+    // getting radio buttons
     let prefRadios = document.querySelectorAll("input[type=\"radio\"]");
 
     for (let radio of prefRadios){
+        // event listener
         radio.addEventListener("change", () => {
 
-
+        // conditional for email
         if (email.checked){
             prefEmailSpan.classList.add("required");
             emailSpan.textContent = "*";
@@ -146,6 +171,7 @@ submitBtn.addEventListener("click", (e) =>{
             }
         }
 
+        // conditional for phone
         if(phone.checked){
             phoneSpan.classList.add("required");
             phoneSpan.textContent = "*";
@@ -161,13 +187,16 @@ submitBtn.addEventListener("click", (e) =>{
 
         })
     }
-
+    // successful submit
      if (isValid){
+        //showing success message and submitted info 
         document.querySelector("#success").classList.remove("hide");
         document.querySelector("#success").classList.add("show");
-
+        
+        //template for showing submitted info
         document.getElementById("formSub").innerHTML = `<strong>Name: </strong>${contactMe.myName.value}<br><strong>Email: </strong>${contactMe.myInbox.value}<br><strong>Phone: </strong>${contactMe.myPhone.value}<br><strong>Comments: </strong>${contactMe.myComments.value}`;
 
+        //clearing form after submit
         contactMe.reset();
      }
 })
